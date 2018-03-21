@@ -1,11 +1,11 @@
 import java.util.concurrent.SynchronousQueue;
 
+/* ДЗ
+* байты биты
+* двоичная точность*/
+
 public class lesson1 {
 
-    public static void main (String [] args){
 
-        System.out.println("Hello");
-
-    }
 
 }

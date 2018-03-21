@@ -14,7 +14,8 @@ public class DataType {
         a1 = 9;
         b1 = 4;
         c1 = a1 / b1;
-        System.out.println(c1);
+        float c9 = (float)a1 / (float) b1;
+        System.out.println(c9);
 
         long m;  // 64 бит
 

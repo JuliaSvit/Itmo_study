@@ -150,13 +150,10 @@ public class Part1 {
 
         int [] arr = new int[lengthArr];
         Random random = new Random();
+        int left = 0, right = 0;
         for (int i = 0; i < arr.length; i++){
             arr[i] = -5 + random.nextInt(6 + 5);
             System.out.print(arr[i] + " ");
-        }
-
-        int left = 0, right = 0;
-        for(int i = 0; i < arr.length; i++){
             if (i < arr.length/2){
                 left += Math.abs(arr[i]);
             } else {
@@ -212,25 +209,25 @@ public class Part1 {
     void multiplication(){
 
         System.out.println("\n8. Таблица умножения.");
-        // создаём и заполняем массив из 15 множеемых элементов
+        // создаём и заполняем массив из 15 множемых элементов
         int arr1 [] = new int[15];
         Random random = new Random();
-        for (int i = 0; i < 15; i++){
+        for (int i = 0; i < arr1.length; i++){
             arr1[i]= 2 + random.nextInt(10 - 2);
         }
         //создаём и заполняем массив из 15 множителей
         int [] arr2 = new int[15];
-        for (int i = 0; i < arr1.length; i++){
+        for (int i = 0; i < arr2.length; i++){
             do{
                 int x = 2 + random.nextInt(10 - 2); // создаётся рандомное число
-                if (i == 0){
+                if (i == 0){ // если это первый элемент, то сразу его записываем
                     arr2[i] = x;
-                    break;
+                    break; //выход из while
                 } else {
                     // Проверяем, повторяется ли комбинация для элементов, которые уже были записаны
                     boolean trigger = true;
-                    for (int j = 0; j < i; j++){
-                        if ((arr2[j] == x && arr1[i] == arr1[j])|| (arr2[j] == arr1[i] && arr1[j] == x)){
+                    for (int j = 0; j < i; j++){ // перебераем предыдущие комбинации
+                        if ((arr2[j] == x && arr1[i] == arr1[j])|| (arr2[j] == arr1[i] && arr1[j] == x)){ // если нашли повторение:
                             trigger = false;
                             break; // выход из for
                         }

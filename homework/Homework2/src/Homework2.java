@@ -20,6 +20,9 @@ public class Homework2 {
 
         System.out.println("\nЧачть 2:");
 
+        p2.stringRewrite();
+        p2.repeatChar();
+        p2.regExp();
     }
 
 }

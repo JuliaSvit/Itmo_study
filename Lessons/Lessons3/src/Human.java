@@ -12,13 +12,21 @@ public class Human {
     }
 
         public void walk(){
-            this.walking = true;
-            System.out.println("walking...");
+            if (!this.walking){
+                System.out.println("Walking...");
+                this.walking = true;
+            } else {
+                System.out.println("Already walking");
+            }
         }
 
         public void stop (){
-            this.walking = false;
-            System.out.println("Stop...");
+            if (this.walking){
+                System.out.println("Stop...");
+                this.walking = false;
+            } else {
+                System.out.println("Already stop...");
+            }
         }
 
         public String getName (){
@@ -48,21 +56,17 @@ public class Human {
 //        Human human2 = new Human();
 //        Human human3 = human2;
         System.out.println(human.getName());
-        if (human.walking){
-            human.stop();
-        } else {
-            human.walk();
-        }
+
+        human.stop();
+        human.walk();
+
 //        human.name = "Ivan";
         human.setName("Ivan");
         System.out.println(human.getName() + " " + human.getAge() + " лет");
-        if (human.walking){
-            human.stop();
-        } else {
-            human.walk();
-        }
         Animal cat = new Animal("Имя кошки", "Цвет");
         human.addPet(cat);
+        human.walk();
+        human.stop();
     }
 
 }

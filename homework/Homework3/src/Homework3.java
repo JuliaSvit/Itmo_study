@@ -5,8 +5,8 @@ public class Homework3 {
     public static void main(String [] args){
 
         Homework3 hm3 = new Homework3();
-//        hm3.inLibrary();
-//        hm3.figures();
+        hm3.inLibrary();
+        hm3.figures();
     }
 
     //////////////////////////////////////////////
@@ -35,13 +35,13 @@ public class Homework3 {
         if (read1 > 0) {
             System.out.println("Не хватило " + read1 + " книг");
         } else {
-            System.out.println(book.getBook() + " хватит всем");
+            System.out.println(book.getBookInfo() + " хватит всем");
         }
         int read2 = lib.get(book1,15);
         if (read2 > 0) {
             System.out.println("Не хватило " + read2 + " книг");
         }else {
-            System.out.println(book2.getBook() + " хватит всем");
+            System.out.println(book2.getBookInfo() + " хватит всем");
         }
 
     }

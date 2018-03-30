@@ -17,8 +17,7 @@ public class Book {
     public int takeBook (int quantity){
         int l = this.bookQuantity - quantity;
         if(l < 0){
-            System.out.println(quantity + " книг " + this.getBook() +" нет, можно взять только "
-                    + bookQuantity);
+            System.out.println(quantity + " книг " + this.getBookInfo() +" нет, можно взять только " + bookQuantity);
             this.bookQuantity = 0;
             return l*(-1);
         }else{
@@ -27,7 +26,7 @@ public class Book {
         }
     }
 
-    public String getBook(){
+    public String getBookInfo(){
         return this.author + " \"" +this.title + "\"";
     }
 

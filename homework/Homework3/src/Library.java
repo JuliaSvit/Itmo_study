@@ -9,7 +9,7 @@ public class Library {
     public void put(Book book, int quantity){
         if (count + quantity > MAXBOOK){ // проверка на вместимость
             int last = MAXBOOK - count;
-            System.out.println("Все книги " + book.getBook() + " - не поместится.");
+            System.out.println("Книги " + book.getBookInfo() + " - не поместятся.");
             if (last > 0){
                 System.out.println("В библиотеку будет добавленно только " + last + " книг из " +
                         quantity);

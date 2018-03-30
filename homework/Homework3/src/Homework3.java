@@ -7,6 +7,7 @@ public class Homework3 {
         Homework3 hm3 = new Homework3();
         hm3.inLibrary();
         hm3.figures();
+        hm3.houses();
     }
 
     //////////////////////////////////////////////
@@ -95,5 +96,33 @@ public class Homework3 {
         Если человека нельзя поселить, потому что его пожелание не выполняется,
         он перемещяется в конец очереди.
         Если не хватило места - остается на прежнем месте, ждать нового дома*/
+
+    void houses(){
+        // Заполняем очередь людей
+        ArrayList<Human> hQ = new ArrayList<>();
+        hQ.add(new Human ("Иванов",3));
+        hQ.add(new Human ("Петров",10));
+        hQ.add(new Human ("Шиатко",1));
+        hQ.add(new Human ("Воробушек",5));
+        hQ.add(new Human ("Вольва",3));
+        hQ.add(new Human ("Отличная",1));
+        hQ.add(new Human ("Пушкина",5));
+        hQ.add(new Human ("Патин",2));
+        hQ.add(new Human ("Губова",4));
+        hQ.add(new Human ("Дураков",3));
+        hQ.add(new Human ("Богиня",1));
+        hQ.add(new Human ("Зорькин",2));
+        hQ.add(new Human ("Кваша",2));
+
+        //Создаём новый дом
+        House house = new House("Пушкинская", 3, 2, 5);
+
+        //Заселяем в него людей
+        house.add(hQ);
+        house.add(hQ);
+
+        System.out.println("В доме по адресу " + house.getAdres() + " на " + house.getAllFlat() +
+                " вартир, проживает " + house.getAllHumans() + " человек");
+    }
 
 }

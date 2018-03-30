@@ -19,7 +19,7 @@ public class House{
         this.fullness = new int [floor][2];
         for(int i = 0; i < floor; i++){
             this.fullness[i][0] = i+1;
-            this.fullness[i][1] = flatOnFloor;
+            this.fullness[i][1] = flatOnFloor * door;
         }
 
     }

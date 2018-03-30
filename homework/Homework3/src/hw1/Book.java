@@ -1,4 +1,4 @@
-
+package hw1;
 /* Задание № 1 */
 
 public class Book {

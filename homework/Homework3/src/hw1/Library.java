@@ -1,4 +1,4 @@
-
+package hw1;
 /* Задание № 1 */
 
 import java.util.ArrayList;

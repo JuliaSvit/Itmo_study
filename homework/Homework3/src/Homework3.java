@@ -1,3 +1,9 @@
+import hw1.Book;
+import hw1.Library;
+import hw2.Figure;
+import hw3.House;
+import hw3.Human;
+
 import java.util.ArrayList;
 
 public class Homework3 {
@@ -5,17 +11,20 @@ public class Homework3 {
     public static void main(String [] args){
 
         Homework3 hm3 = new Homework3();
+        System.out.println("\n1. Библиотека.\n");
         hm3.inLibrary();
+        System.out.println("\n2. Фигуры.\n");
         hm3.figures();
+        System.out.println("\n3. Расселение.\n");
         hm3.houses();
     }
 
     //////////////////////////////////////////////
-    /*1. Сделать библиотеку, которая ведет учет книг. Должно быть как минимум два класса: Book и Library.
-    Library имеет два метода: void put(Book book, int quantity) и int get(Book book, int quantity).
+    /*1. Сделать библиотеку, которая ведет учет книг. Должно быть как минимум два класса: hw1.Book и hw1.Library.
+    hw1.Library имеет два метода: void put(hw1.Book book, int quantity) и int get(hw1.Book book, int quantity).
     Каждой книге в библиотеке соответствует счетчик, показывающий количество хранящихся книг,
     при добавлении книги - счетчик увеличивается, при извлечении - уменьшается на число quantity.
-    Поля класса Book: author, title, pagesNum.
+    Поля класса hw1.Book: author, title, pagesNum.
     Библиотека хранит ограниченное число книг, сколько - на ваше усмотрение.*/
 
     public void inLibrary(){
@@ -83,7 +92,7 @@ public class Homework3 {
         У дома должна быть возможность показать адрес - метод
         У дома должна быть возможность сообщить, сколько людей в нем живет - метод
 
-        Есть очередь людей (массив с объектами класса Human),
+        Есть очередь людей (массив с объектами класса hw3.Human),
         каждый хочет заселиться в дом , но у каждого есть пожелание - этажность дома!
 
         Одновременно в дом можно заселить троих.
@@ -110,7 +119,7 @@ public class Homework3 {
         hQ.add(new Human ("Патин",2));
         hQ.add(new Human ("Губова",4));
         hQ.add(new Human ("Дураков",3));
-        hQ.add(new Human ("Богиня",1));
+        hQ.add(new Human("Богиня",1));
         hQ.add(new Human ("Зорькин",2));
         hQ.add(new Human ("Кваша",2));
 

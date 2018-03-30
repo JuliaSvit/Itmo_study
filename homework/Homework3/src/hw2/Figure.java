@@ -1,4 +1,4 @@
-
+package hw2;
 /* Задание № 2 */
 
 import java.util.ArrayList;

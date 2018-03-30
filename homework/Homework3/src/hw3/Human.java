@@ -1,4 +1,4 @@
-
+package hw3;
 /* Задание № 3 */
 
 public class Human

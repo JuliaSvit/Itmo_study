@@ -1,5 +1,7 @@
 package lib;
 
+import java.util.Objects;
+
 public class MyDate {
     private String fullDate;
     private int day;
@@ -41,8 +43,54 @@ public class MyDate {
         return y;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.fullDate);
+        hash = 59 * hash + this.day;
+        hash = 59 * hash + this.month;
+        hash = 59 * hash + this.year;
+        hash = 59 * hash + this.hour;
+        hash = 59 * hash + this.minute;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MyDate other = (MyDate) obj;
+        if (this.day != other.day) {
+            return false;
+        }
+        if (this.month != other.month) {
+            return false;
+        }
+        if (this.year != other.year) {
+            return false;
+        }
+        if (this.hour != other.hour) {
+            return false;
+        }
+        if (this.minute != other.minute) {
+            return false;
+        }
+        if (!Objects.equals(this.fullDate, other.fullDate)) {
+            return false;
+        }
+        return true;
+    }
+
     public int getDay(){
         return this.day;
+
     }
 
     public int getMonth() {
@@ -60,4 +108,30 @@ public class MyDate {
     public int getMinute() {
         return minute;
     }
+
+    public int compare (MyDate myDate){
+        if (this.year > myDate.year){
+            return 1;
+        } else if(this.year < myDate.year){
+            return -1;
+        } else if(this.month > myDate.month){
+            return 1;
+        } else if(this.month < myDate.month){
+            return -1;
+        } else if(this.day > myDate.day){
+            return 1;
+        } else if(this.day < myDate.day){
+            return -1;
+        } else if(this.hour > myDate.hour){
+            return 1;
+        } else if(this.hour < myDate.hour){
+            return -1;
+        } else if(this.minute > myDate.minute){
+            return 1;
+        } else if(this.minute < myDate.minute){
+            return -1;
+        }
+        return 0;
+    }
+
 }

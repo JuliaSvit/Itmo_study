@@ -22,9 +22,9 @@ public class Diary {
             this.bookmark.add(dateNote);
         }
         if (pages.size() > 0){
-            Collections.sort(this.pages, new Comparator<Pages>() {
+            Collections.sort(pages, new Comparator<Pages>() {
                 public int compare(Pages o1, Pages o2) {
-                    return o1.toString().compareTo(o2.toString());
+                    return o1.compare(o2);
                 }
             });
         }
@@ -80,6 +80,15 @@ public class Diary {
                     System.out.println(p.getDateNote().getDate() + "\n" + p.getNote());
                     break;
                 }
+            }
+        }
+    }
+
+    public void delNote(MyDate myDate){ //удаление записи
+        for (Pages p: this.pages){
+            if (p.getDateNote().equals(myDate)){
+                this.pages.remove(p);
+                break;
             }
         }
     }

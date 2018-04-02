@@ -13,7 +13,7 @@ public class Homework4 {
         /*1. Представьте себе школу, подумайте, как можно спроектировать эту систему на классах,
         выделите основные сущности и подумайте, какие у них будут возможности.
         На основе этого опишите классы и методы (Сколько успеете!)*/
-
+/*
         School school = new School("Школа № 1","СПб, проспект Ленина", 2, 4,20);
 
         // учителя и ученики
@@ -47,14 +47,14 @@ public class Homework4 {
         school.enrollInGroup(pupil1);
         school.enrollInGroup(pupil2);
         school.enrollInGroup(pupil3);
-
+*/
         /*
         2. Мы будем делать ежедневник. Для начала также нужно выдельть основные классы и методы и описать их.
         Классы и медоты выделяйте и описывайте на свое усмотрение, потом обсудим!
         Не забывайте про наследование и модификаторы доступа
          */
 
-        Diary diary = new Diary("Мой первый дневник");
+        Diary diary = new Diary("Мой первый ежедневник");
         diary.newNote(new MyDate("01.03.2018 16:30"), "Сегодня замечательный весенний день", true);
         diary.newNote(new MyDate("01.04.2018 15:00"), "Первое апреля, никому не вею", false);
         diary.newNote(new MyDate("15.03.2018 10:45"), "Сегодня хуже чем вчера, всё задом на перёд", true);
@@ -62,11 +62,11 @@ public class Homework4 {
         diary.newNote(new MyDate("10.02.2018 11:00"), "Деловая встреча", true);
         diary.newNote(new MyDate("10.02.2018 21:00"), "Бар с друзьями", false);
 
-        diary.bookmarkNote();
-        diary.getName();
-        diary.getTimeNote(new MyDate("15.03.2018 10:45"));
+//        diary.bookmarkNote();
+//        diary.getName();
+//        diary.getTimeNote(new MyDate("15.03.2018 10:45"));
         diary.showAllNote();
-        diary.getDateNote(new MyDate("10.02.2018"));
+//        diary.getDateNote(new MyDate("10.02.2018"));
 
 
 

@@ -23,7 +23,6 @@ public class RWClass {
             }
         }while (true);
 
-        System.out.println(Arrays.toString(rwHandler.parsString("HI")));
     }
 
 }

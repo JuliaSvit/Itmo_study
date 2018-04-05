@@ -1,8 +1,10 @@
+package rwConfig;
+
 import java.util.HashMap;
 
-public class TxtHandler extends HanderRealize{
+public class TxtRWHandler extends HanderRealize{
 
-    public TxtHandler(String filePath) {
+    public TxtRWHandler(String filePath) {
         super(filePath);
         System.out.println("Это файл txt");
     }

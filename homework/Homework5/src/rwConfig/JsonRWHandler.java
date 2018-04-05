@@ -1,11 +1,13 @@
+package rwConfig;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class JsonHandler extends HanderRealize implements Tags{
+public class JsonRWHandler extends HanderRealize implements Tags{
 
     private ArrayList<String> tags = new ArrayList<>();
 
-    public JsonHandler(String filePath) {
+    public JsonRWHandler(String filePath) {
         super(filePath);
         System.out.println("Это файл json");
     }
@@ -19,7 +21,7 @@ public class JsonHandler extends HanderRealize implements Tags{
     public ArrayList<String> getTags() {
         return this.tags;
     }
-
+//////////////////////////////////
     @Override
     public void writeFile(HashMap<String, String> hashMap) {
 

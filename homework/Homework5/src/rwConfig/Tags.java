@@ -1,3 +1,5 @@
+package rwConfig;
+
 import java.util.ArrayList;
 
 interface Tags {

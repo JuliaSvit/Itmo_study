@@ -1,5 +1,8 @@
+package rwConfig;
 
-abstract class HanderRealize implements Handler{
+import java.util.HashMap;
+
+abstract class HanderRealize implements RWHandler {
 
     private String filePath; //путь к файлу
 
@@ -35,4 +38,5 @@ abstract class HanderRealize implements Handler{
     @Override
     public void closeFile() {
     }
+
 }

@@ -1,11 +1,13 @@
+package rwConfig;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class XmlHandler extends HanderRealize implements Tags{
+public class XmlRWHandler extends HanderRealize implements Tags{
 
     private ArrayList<String> tags = new ArrayList<>();
 
-    public XmlHandler(String filePath) {
+    public XmlRWHandler(String filePath) {
         super(filePath);
         System.out.println("Это файл xml");
     }
@@ -19,7 +21,7 @@ public class XmlHandler extends HanderRealize implements Tags{
     public ArrayList<String> getTags() {
         return this.tags;
     }
-
+///////////////////////////////////
     @Override
     public void writeFile(HashMap<String, String> hashMap) {
 

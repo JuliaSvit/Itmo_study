@@ -7,12 +7,12 @@ public class RWClass {
     public static void main(String [] args){
 
         Scanner sc = new Scanner(System.in);
-        RWHandler rwHandler;
+        HanderRealize rwHandler;
 
         do {
             System.out.println("Введите Имя файла: ");
             String str = sc.nextLine();
-            rwHandler = RWHandler.getInstanse(str);
+            rwHandler = (HanderRealize) RWHandler.getInstanse(str);
             if(rwHandler != null){
                 break;
             }
@@ -22,6 +22,8 @@ public class RWClass {
                 System.exit(0);
             }
         }while (true);
+
+        rwHandler.getTags();
 
     }
 

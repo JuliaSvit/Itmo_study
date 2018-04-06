@@ -1,5 +1,6 @@
 package rwConfig;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TxtRWHandler extends HanderRealize{
@@ -18,5 +19,18 @@ public class TxtRWHandler extends HanderRealize{
     public String[] parsString(String str) {
         String[] s = str.split(":");
         return s;
+    }
+
+    @Override
+    public String readFile(String str){
+        this.parsString(str);
+        ///
+        return null;
+    }
+
+    @Override
+    public ArrayList<String> getTags() {
+        System.out.println("У меня нет тегов");
+        return this.tags;
     }
 }

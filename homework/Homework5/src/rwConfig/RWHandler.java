@@ -14,11 +14,8 @@ public interface RWHandler {
 
     void setFilePath(String filePath);  // задать путь и название к файлу
     String getFilePath();               // полйчить путь и название к файлу
-    void createFile();                  //создать файл
-    void openFile();                    //открыть файл
-    void closeFile();                   //закрыть файл
     void writeFile(HashMap<String, String> hashMap); //записать в файл
-    String readFile();                  // считать из файла
+    String readFile(String str);                  // считать из файла
     String[] parsString (String str);   // преобразовать строку в ключ:значение массив String
 
     static RWHandler getInstanse(String file){

@@ -50,7 +50,9 @@ public class Lesson8 {
             String st = iterator.next().trim().toLowerCase();
             String[]sr = st.split(" ");
             for (String s: sr)
-                arrayList.add(s);
+                if (s!=null && !s.equals("")) {
+                    arrayList.add(s);
+                }
         }
         for (String str: arrayList){
             System.out.println(str);

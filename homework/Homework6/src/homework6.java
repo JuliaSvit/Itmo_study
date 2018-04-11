@@ -10,8 +10,8 @@ import java.util.Map;
 public class homework6 {
 
     public static void main(String[]args) throws IOException {
-//        File txt = new File("src/Text.txt"); // короткий текст
-        File txt = new File("src/wp.txt"); // длинный текст
+        File txt = new File("src/Text.txt"); // короткий текст
+//        File txt = new File("src/wp.txt"); // длинный текст
         List<String> lines = Files.readAllLines(txt.toPath());
         Word word = new Word(lines);
         for (Map.Entry entry : word.getAllWords().entrySet()) {
@@ -42,6 +42,8 @@ public class homework6 {
             }
             System.out.println();
         }
+
+       Word.allLiteres(lines);
 
     }
 

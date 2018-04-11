@@ -110,6 +110,34 @@ public class Word {
         }
     }
 
+/*5. Вывести частоту встречаемости букв анг алфавита по этой книге.
+Вывести в процентах для каждой буквы.*/
+
+    public static void allLiteres(List <String> someText){
+        Map<Character, Integer> charMap = new HashMap<>();
+        int count = 0;
+        for(String str: someText){
+            char[]arrCh = str.toLowerCase().replaceAll("[^a-zA-Z]", "").toCharArray();  //убрать toLowerCase()
+                                                                                            // если регистр важен
+            for(char ch: arrCh){
+                count++;
+                if(charMap.containsKey(ch)){
+                    charMap.put(ch,charMap.get(ch)+1);
+                } else {
+                    charMap.put(ch,1);
+                }
+            }
+        }
+        double pr = (double) 100/(double) count;
+        System.out.println(count + " " + pr);
+        for (Map.Entry entry : charMap.entrySet()) {
+            int temp = (int) entry.getValue();
+            String result = String.format("%.2f",(temp*pr));
+            System.out.println("* " + entry.getKey() + " - " + result + "%" );
+        }
+    }
+
 }
+
 
 

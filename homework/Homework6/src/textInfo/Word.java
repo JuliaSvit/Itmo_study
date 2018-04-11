@@ -129,7 +129,6 @@ public class Word {
             }
         }
         double pr = (double) 100/(double) count;
-        System.out.println(count + " " + pr);
         for (Map.Entry entry : charMap.entrySet()) {
             int temp = (int) entry.getValue();
             String result = String.format("%.2f",(temp*pr));

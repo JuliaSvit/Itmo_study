@@ -15,11 +15,10 @@ public class Word {
     /*слова через дефис пишет слитно*/
     public Word(List<String> lines) throws IOException {
         for(String line: lines){
-            String line2 = line.trim().toLowerCase().replaceAll("--", " ");
+            String line2 = line.toLowerCase().replaceAll("[^a-zA-Z]", " ").trim();
             if (!line2.isEmpty()){
                 String[] str = line2.split(" ");
                 for(String s: str){
-                    s = s.replaceAll("[^a-zA-Z]", "");
                     if (!s.isEmpty()){
                         if (words.containsKey(s)) {
                             words.put(s, words.get(s) + 1);

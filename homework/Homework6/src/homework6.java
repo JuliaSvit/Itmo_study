@@ -14,13 +14,13 @@ public class homework6 {
         File txt = new File("src/wp.txt"); // длинный текст
         List<String> lines = Files.readAllLines(txt.toPath());
         Word word = new Word(lines);
-        for (Map.Entry entry : word.getAllWords().entrySet()) {
+/*        for (Map.Entry entry : word.getAllWords().entrySet()) {
             System.out.println("Word: " + entry.getKey() + " - "
                     + entry.getValue());
 
         }
-/*
-        String someWodr = "after";
+*/
+        String someWodr = "gentlemen";
         System.out.println(someWodr + " - " + word.getNumWord(someWodr));
 
         word.groupingWord();
@@ -44,7 +44,7 @@ public class homework6 {
         }
 
        Word.allLiteres(lines);
-*/
+
     }
 
 }

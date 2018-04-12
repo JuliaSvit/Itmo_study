@@ -12,13 +12,15 @@ public class Word {
     private Map <Integer,Set> filterGroupWord = new HashMap<>();
     private Set <String> article = new HashSet<String>();
 
-    /*слова через дефис пишет слитно*/
+    /*учитывает "-" и "'" в середине слова*/
     public Word(List<String> lines) throws IOException {
         for(String line: lines){
-            String line2 = line.toLowerCase().replaceAll("[^a-zA-Z]", " ").trim();
+            String line2 = line.toLowerCase().replaceAll("[^a-zA-Z_'-]", " ")
+                                             .replaceAll("--", " ");
             if (!line2.isEmpty()){
                 String[] str = line2.split(" ");
                 for(String s: str){
+                    s = s.replaceAll("^['-]|['-]$","");
                     if (!s.isEmpty()){
                         if (words.containsKey(s)) {
                             words.put(s, words.get(s) + 1);
@@ -47,11 +49,11 @@ public class Word {
         return this.filterGroupWord;
     }
 
-    /*1. Сосчитать частоту встречаемости слов в книге War and peace.*/
+/*1. Сосчитать частоту встречаемости слов в книге War and peace.*/
 
 
     public int getNumWord(String word){
-        word = word.toLowerCase().replaceAll("[^a-zA-Z]", "");
+        word = word.toLowerCase();
         return this.words.containsKey(word)?this.words.get(word):0;
     }
 
@@ -74,7 +76,7 @@ public class Word {
         }
     }
 
-/*3. Вывести топ 10 самых частых слов и фраз.*/
+/*3. Вывести топ 10 (top) самых частых слов.*/
     public void topWords(int top){
         ArrayList<Integer> t = new ArrayList<>();
         int count = 0;

@@ -99,21 +99,24 @@ public class LinkedList<T> implements List {
 
     private Node getByIndex(int index){
         Node<T> node = this.first;
-        if (!isEmpty() && (index >= 0 && index < this.size)){
+        try {
             for (int i = 1; i <= index; i++){
                 node = node.getNext();
             }
+        } catch (NullPointerException e){
+            System.out.println("Ошибка");
+            return null;
         }
         return node;
     }
 
     @Override
     public Object get(int index) {
-        Object element = null;
-        if (index >= 0 && index < this.size){
-            element = getByIndex(index).getValue();
+        Node node = getByIndex(index);
+        if (node != null) {
+            return node.getValue();
         }
-        return element;
+        return null;
     }
 
     @Override
@@ -146,27 +149,34 @@ public class LinkedList<T> implements List {
 
     @Override
     public int indexOf(Object o) {
+        if (size() == 0) return -1;
         Node<T> node = this.first;
-        for(int i=0; i<size(); i++) {
-            if (node.getValue().equals(o)) {
-                return i;
-            }
-            node = this.getByIndex(i).getNext();
+         if (first.getValue().equals(o)) {
+             return 0;
+         }
+         if (last.getValue().equals(o)) {
+            return size() - 1;
+         }
+         for (int i = 1; i < size() - 1; i++) {
+         node = this.getByIndex(i).getNext();
+         if (node.getValue().equals(o)) {
+         return i;
+             }
         }
         return -1;
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        Node<T> node = this.first;
-        int index = -1;
-        for(int i=0; i<size(); i++) {
+        if (size() == 0) return -1;
+        Node<T> node = this.last;
+        for(int i = size()-1; i >= 0; i--) {
             if (node.getValue().equals(o)) {
-                index = i;
+                return i;
             }
-            node = this.getByIndex(i).getNext();
+            node = getByIndex(i).getPrevious();
         }
-        return index;
+        return -1;
     }
 
     @Override

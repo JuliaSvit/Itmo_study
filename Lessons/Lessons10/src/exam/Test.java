@@ -30,30 +30,33 @@ public class Test {
 
     public static void main(String[] args) {
 
-        for (Planet s : Planet.values())
-            System.out.println(s + ": " + s.getPlanet());
+//        for (Planet s : Planet.values())
+//            System.out.println(s + ": " + s.getPlanet());
 
-        LinkedList<Integer> list = new LinkedList<>();
-        list.add(12);
-        list.add(25);
-        list.add(50);
-        list.add(11);
-        list.add(4);
-        System.out.println(Arrays.toString(list.toArray()));
-        System.out.println(list.remove(Integer.valueOf(25)));
-        System.out.println(Arrays.toString(list.toArray()));
+//        LinkedList<Integer> list = new LinkedList<>();
+//        list.add(12);
+//        list.add(25);
+//        list.add(50);
+//        list.add(11);
+//        list.add(4);
+//        System.out.println(Arrays.toString(list.toArray()));
+//        System.out.println(list.remove(Integer.valueOf(25)));
+//        System.out.println(Arrays.toString(list.toArray()));
 
         LinkedList<String>list1 = new LinkedList<>();
         list1.add("Hello");
         list1.add("World");
         list1.add("And");
         list1.add("By");
-        System.out.println(list1.indexOf("jhg"));
-        System.out.println(Arrays.toString(list1.toArray()));
-        System.out.println(list1.remove("By"));
-        System.out.println(list1.remove(0));
-        System.out.println(list1.get(0));
-        System.out.println(Arrays.toString(list1.toArray()));
+
+        System.out.println("And "+list1.lastIndexOf("And"));
+//        System.out.println(list1.indexOf("jhg"));
+//        System.out.println(Arrays.toString(list1.toArray()));
+//        System.out.println(list1.remove("By"));
+//        System.out.println(list1.remove(0));
+//        System.out.println(list1.get(0));
+//        System.out.println(Arrays.toString(list1.toArray()));
+        System.out.println(list1.get(4));
 
     }
 

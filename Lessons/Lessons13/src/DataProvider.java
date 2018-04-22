@@ -1,0 +1,6 @@
+//DataProvider
+//
+
+public class DataProvider {
+
+}

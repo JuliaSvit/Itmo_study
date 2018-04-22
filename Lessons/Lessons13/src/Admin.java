@@ -29,7 +29,18 @@ public class Admin extends DefaultUser {
     }
 
     public void deleteTask(Set<Task> list, String userName, String taskName){
-
+        for(Task task: list){
+            String user = task.getUserName();
+            String tName = task.getUserName();
+            if(user.equals(userName) && tName.equals(taskName)){
+                list.remove(task);
+                return;
+            }
+        }
     }
+
+
+
+
 
 }

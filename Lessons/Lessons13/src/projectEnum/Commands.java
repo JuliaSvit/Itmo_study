@@ -13,7 +13,7 @@ public enum Commands {
     REMOVE_WORKER("remove worker"),
     SHOW_DONE("show done"),
     TAKE_TASK("take task"),
-    MAKE_AS_DONE("mark as done");
+    MAKE_AS_DONE("make as done");
 
     private String com;
 

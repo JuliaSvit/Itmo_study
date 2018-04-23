@@ -1,17 +1,19 @@
+import interfase.DefaultUser;
 import projectEnum.Status;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Task {
 
-    private String userName;
+    private DefaultUser user;
     private String taskName;
     private final Date dateBegin;
     private Date dateEnd;
     private Status status;
 
-    public Task(String userName, String taskName){
-        this.userName = userName;
+    public Task(DefaultUser userLogin, String taskName){
+        this.user = userLogin;
         this.taskName = taskName;
         this.dateBegin = new Date(); // при создании объекта автоматически заполняется текущей датой
         this.status = Status.NEW;
@@ -37,8 +39,8 @@ public class Task {
         this.dateEnd = null;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserName(DefaultUser userLogin) {
+        this.user = userLogin;
     }
 
     public String getTaskName() {
@@ -49,11 +51,32 @@ public class Task {
         this.taskName = taskName;
     }
 
-    public String getUserName() {
-        return userName;
+    public DefaultUser getUser() {
+        return this.user;
     }
 
     public String getDateBegin() {
         return dateBegin.toString();
+    }
+
+    public void showTask(){
+        String dateEnd = (this.dateEnd==null)?"0":this.dateEnd.toString();
+        System.out.println(this.user + " - " + this.taskName +
+                " - " + this.dateBegin.toString() + " - " + dateEnd + " - " + this.status.getStatus());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return Objects.equals(this.user, task.user) &&
+                Objects.equals(this.taskName, task.taskName);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(user, taskName);
     }
 }

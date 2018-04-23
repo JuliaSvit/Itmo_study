@@ -1,46 +1,61 @@
 import interfase.DefaultUser;
+import projectEnum.PermisionsEnum;
 import projectEnum.Status;
+import testClass.TaskerException;
 
 import java.util.Set;
 
 public class Admin extends DefaultUser {
 
 
-    public Admin(String login, String password) throws Exception {
-        super(login, password);
+    public Admin(String login, String password, PermisionsEnum permision) throws TaskerException {
+        super(login, password, permision);
+    }
+
+    @Override
+    public void showCommands() {
+
     }
 
     public void showAllTasks(Set<Task> list){
 
         for (Task task: list){
-            String dateEnd = (task.getDateEnd()==null)?"0":task.getDateEnd().toString();
-            System.out.println(task.getUserName() + "\n" + task.getTaskName() + " - " +
-                    task.getDateBegin() + " - " + dateEnd + " - " + task.getStatus());
+            task.showTask();
         }
 
     }
 
-    public Task createTask(String userName, String taskName){
-        return new Task(userName,taskName);
+    public Task createTask(DefaultUser userLogin, String taskName){
+        return new Task(userLogin,taskName);
     }
 
     public void changeTaskState(Task task, Status status){
         task.setStatus(status);
     }
 
-    public void deleteTask(Set<Task> list, String userName, String taskName){
+    public void deleteTask(Set<Task> list, DefaultUser userDel, String taskDel){
         for(Task task: list){
-            String user = task.getUserName();
-            String tName = task.getUserName();
-            if(user.equals(userName) && tName.equals(taskName)){
+            DefaultUser user = task.getUser();
+            String taskName = task.getTaskName();
+            if(user.equals(userDel) && taskName.equals(taskDel)){
                 list.remove(task);
                 return;
             }
         }
     }
 
+    public void addWorker(Set<DefaultUser> userList, String userLogin, String password,PermisionsEnum permision) throws Exception {
+        DefaultUser user = UserFactory.createUser(userLogin,password,permision);
+        userList.add(user);
+    }
 
+    public void removeWorker(Set<DefaultUser> userList, String userLogin){
+        for (DefaultUser user: userList){
+            if(user.getLogin().equals(userLogin)) {
+                userList.remove(user);
+                return;
+            }
+        }
 
-
-
+    }
 }

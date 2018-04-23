@@ -1,5 +1,6 @@
 package interfase;
 
+import projectEnum.PermisionsEnum;
 import testClass.TaskerException;
 
 public interface UserInterface {
@@ -8,5 +9,7 @@ public interface UserInterface {
     String getLogin();
     void setPassword(String str) throws TaskerException, TaskerException;
     String getPassword();
+    void setPermision(PermisionsEnum permision);
+    PermisionsEnum getPermision();
 
 }

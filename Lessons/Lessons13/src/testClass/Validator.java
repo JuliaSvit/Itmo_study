@@ -1,5 +1,7 @@
 package testClass;
 
+import projectEnum.Commands;
+
 public class Validator {
 
     public static boolean validatorLogin(String login){
@@ -15,10 +17,20 @@ public class Validator {
         if (password == null){
             return false;
         }
-        if (password.trim().length() < 5){
+        if (password.trim().length() < 3){
             return false;
         }
         return true;
+    }
+
+    public static boolean validatorCommands(String command){
+        boolean hasComm = true;
+        try {
+            Commands.valueOf(command);
+        }catch (IllegalArgumentException e){
+            hasComm = false;
+        }
+        return hasComm;
     }
 
 }

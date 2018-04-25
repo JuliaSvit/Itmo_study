@@ -1,6 +1,6 @@
 package projectEnum;
 
-public enum Status {
+public enum StatusEnum {
 
     DONE("done"),
     NEW("new"),
@@ -9,7 +9,7 @@ public enum Status {
 
     private String statusName;
 
-    Status(String s){
+    StatusEnum(String s){
         this.statusName = s;
     }
 

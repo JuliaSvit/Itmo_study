@@ -1,6 +1,6 @@
 package projectEnum;
 
-public enum Commands {
+public enum CommandsEnum {
     SHOW("show commands"),
     EXIT("exit"),
     CLOSE("close"),
@@ -17,7 +17,7 @@ public enum Commands {
 
     private String com;
 
-    Commands(String s){
+    CommandsEnum(String s){
         this.com = s;
     }
 

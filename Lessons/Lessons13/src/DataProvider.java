@@ -1,5 +1,5 @@
 import interfase.DefaultUser;
-import projectEnum.Commands;
+import projectEnum.CommandsEnum;
 import projectEnum.PermisionsEnum;
 import testClass.TaskerException;
 import testClass.Validator;
@@ -30,8 +30,8 @@ public class DataProvider {
         while (true) {
             System.out.println("Введите логин: ");
             String login = scanner.nextLine();
-            if(login.equals(Commands.CLOSE.getComand())){
-                DefaultUser.closeProgramm();
+            if(login.equals(CommandsEnum.CLOSE.getComand())){
+                Commands.close();
             }
             for (DefaultUser us : this.users) {
                 if (login.equals(us.getLogin())) {
@@ -50,8 +50,8 @@ public class DataProvider {
         while (true){
             System.out.println("Введите пароль: ");
             String password = scanner.nextLine();
-            if(password.equals(Commands.CLOSE.getComand())){
-                DefaultUser.closeProgramm();
+            if(password.equals(CommandsEnum.CLOSE.getComand())){
+                Commands.close();
             }
             if (password.equals(pass)) {
                 return user;

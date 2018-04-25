@@ -57,21 +57,6 @@ public abstract class DefaultUser extends Throwable implements UserInterface{
         return this.permision;
     }
 
-    abstract public void showCommands();
-//    {
-//        System.out.println( Commands.SHOW.getComand() + " - показать все команды\n" +
-//                Commands.EXIT.getComand() + " - выход из системы\n" +
-//                Commands.CLOSE.getComand() + " - выход из прогаммы");
-//    }
-
-    public static void exitProgramm(){
-        //возвращает на ввод логина пароля
-    }
-
-    public static void closeProgramm(){
-        System.exit(0);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -1,5 +1,5 @@
 import interfase.DefaultUser;
-import projectEnum.Status;
+import projectEnum.StatusEnum;
 
 import java.util.Date;
 import java.util.Objects;
@@ -10,16 +10,16 @@ public class Task {
     private String taskName;
     private final Date dateBegin;
     private Date dateEnd;
-    private Status status;
+    private StatusEnum status;
 
     public Task(DefaultUser userLogin, String taskName){
         this.user = userLogin;
         this.taskName = taskName;
         this.dateBegin = new Date(); // при создании объекта автоматически заполняется текущей датой
-        this.status = Status.NEW;
+        this.status = StatusEnum.NEW;
     }
 
-    public void setStatus(Status status){
+    public void setStatus(StatusEnum status){
         this.status = status;
     }
 

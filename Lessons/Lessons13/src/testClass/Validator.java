@@ -1,6 +1,6 @@
 package testClass;
 
-import projectEnum.Commands;
+import projectEnum.CommandsEnum;
 
 public class Validator {
 
@@ -26,7 +26,7 @@ public class Validator {
     public static boolean validatorCommands(String command){
         boolean hasComm = true;
         try {
-            Commands.valueOf(command);
+            CommandsEnum.valueOf(command);
         }catch (IllegalArgumentException e){
             hasComm = false;
         }

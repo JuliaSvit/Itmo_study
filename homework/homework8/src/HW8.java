@@ -17,8 +17,8 @@ public class HW8 {
             b) Зашифровать/ дешифровать файл другим файлом*/
 
         //a)
-//        Encrypt.startEncode("src/text.txt", "src/text2.txt","password");
-//        Encrypt.startDecode("src/text2.txt", "src/text3.txt","password");
+//        Encrypt.startEncodeDecode(new File("src/text.txt"), new File("src/text2.txt"),"password");
+//        Encrypt.startEncodeDecode(new File("src/text2.txt"), new File("src/text3.txt"),"password");
 
     }
 

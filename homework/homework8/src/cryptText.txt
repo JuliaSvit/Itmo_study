@@ -1,0 +1,15 @@
+Using the Google HTTP Client Library for Java on Android
+If you are developing for Android and the Google API you want to use is included in the Google Play Services library, use that library for the best performance and experience.
+If the Google API you want to use with Android is not part of the Google Play Services library, you can use the Google HTTP Client Library for Java, which supports Android 1.5 (or higher), and which is described here.
+
+
+Beta
+Android support for the Google HTTP Client Library for Java is @Beta.
+
+Installation
+Follow the download instructions on the setup page, and pay special attention to the Android instructions for ProGuard.
+Using ProGuard or a similar tool to remove unused code and compress it is critical for minimizing application size.
+For example, for the tasks-android-sample, ProGuard reduces the application size ~88%, from 777KB to 93KB.
+
+Note that ProGuard only runs when preparing your application for release; it does not run when preparing it for debugging, to make it easier to develop.
+However, be sure to test your application in release mode, because if ProGuard is misconfigured it can cause problems that are sometimes a challenge to debug.

@@ -16,9 +16,21 @@ public class HW8 {
             a) Зашифровать/ дешифровать файл паролем (XOR)
             b) Зашифровать/ дешифровать файл другим файлом*/
 
-        //a)
+        //a)Зашифровать/ дешифровать файл паролем (XOR)
+
 //        Encrypt.startEncodeDecode(new File("src/text.txt"), new File("src/text2.txt"),"password");
 //        Encrypt.startEncodeDecode(new File("src/text2.txt"), new File("src/text3.txt"),"password");
+
+        //b) Зашифровать/ дешифровать файл другим файлом
+
+//        TextCrypt.startCodeText(new File("src/text.txt"),
+//                new File("src/cryptText.txt"),
+//                new File("src/text3.txt"));
+//
+//        TextCrypt.startDecodeText(new File("src/text3.txt"),
+//                new File("src/cryptText.txt"),
+//                new File("src/text4.txt"));
+
 
     }
 

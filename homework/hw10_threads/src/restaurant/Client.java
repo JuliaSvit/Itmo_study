@@ -17,8 +17,10 @@ public class Client {
     private final static Object monitorC = new Object();
     private final static Object monitorM = new Object();
 
+    private static volatile int count = 0;
+
     private boolean orderReady = false;
-    private boolean readyM = false;
+    private boolean ready = false;
 
     private Client.Waiter waiter;
     private Client.Cooker cooker;
@@ -34,38 +36,73 @@ public class Client {
         cooker.start();
     }
 
-    public static void main(String[] args) throws InterruptedException {
-        Client client = new Client();
-        Thread.currentThread().setName("T-Client");
+    private void changeReady(){
+        this.ready = !this.ready;
+    }
+
+    private void order(){
+        count++;
         System.out.println(Thread.currentThread().getName() + " - Можно сделать заказ?");
         while (true) {            // проверяем в цкле, перешел ли нужный поток в режим ожидания
-            if(client.waiter.getState()== Thread.State.WAITING){// если перешел, то будим >:)
-                System.out.println(client.waiter.getName() + " - Да, можно");
+            if(this.waiter.getState()== Thread.State.WAITING){// если перешел, то будим >:)
+                orderReady = false;
+                System.out.println(this.waiter.getName() + " - Да, можно");
                 System.out.println(Thread.currentThread().getName() + " - Мне, пожалуйста, даблбургер, катрошку и колу");
-                client.waiter.changeReady(); //меняем доп проверку на готовность
+                this.waiter.changeReady(); //меняем доп проверку на готовность
                 synchronized(monitorW){
                     monitorW.notify();//вот тут будим
                     break;
                 }
             } else {
-                System.out.println(client.waiter.getName() + " - Пока что нет");
+                System.out.println(this.waiter.getName() + " - Пока что нет");
             }
         }
-        synchronized(monitorM){
-            monitorM.wait(); // ждём результата
-        }
-        if(client.readyM){
-            client.readyM = false;
-            System.out.println(Thread.currentThread().getName() + " - Аригато!");
-        }
+    }
 
+    private void waitOrder() throws InterruptedException {
+        while (true) {
+            synchronized (monitorM) {
+                this.monitorM.wait(); // ждём результата
+            }
+            if (this.ready) {
+                this.changeReady();
+                System.out.println(Thread.currentThread().getName() + " - Аригато!\n====================================");
+                break;
+            }
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        Client client = new Client();
+        for (int i = 0; i < 3; i++){
+            Thread.currentThread().setName("T-Client" + (i+1));
+            client.order();
+            client.waitOrder();
+        }
     }
 
     private class Waiter extends Thread{ // Официянт
         private boolean ready = false;
 
-        public void changeReady(){
+        private void changeReady(){
             this.ready = !this.ready;
+        }
+
+        private void getOrder(){
+            System.out.println(this.getName() + " - Ваш заказ принят. Спасибо. Ожидайте");
+            cooker.changeReady();
+            System.out.println(this.getName() + " - Cooker, держи новый заказ");
+            synchronized(monitorC){
+                monitorC.notify();
+            }
+        }
+
+        private void putOrder(){
+            System.out.println(this.getName() + " - Ваш заказ готов");
+            Client.this.changeReady();
+            synchronized(monitorM){
+                monitorM.notify(); // тут теперь уже будит официант клиента (маленькая месть)
+            }
         }
 
         @Override
@@ -75,24 +112,12 @@ public class Client {
                     try{
                         monitorW.wait(); // тут засыпает
                         if(this.ready){// кагда разбудили, проверяет специально ли его разбудили или случайно (доп проверка)
+                            changeReady();// не забываем вернуть доп проверку назад
                             if(!orderReady){ // проверяем готов ли заказ, если нет, то это только заказали
-                                System.out.println(this.getName() + " - Ваш заказ принят. Спасибо. Ожидайте");
-                                changeReady();
-                                cooker.changeReady();
-                                System.out.println(this.getName() + " - Cooker, держи новый заказ");
-                                synchronized(monitorC){
-                                    monitorC.notify();
-                                }
-//                                while (true) {        // официант занят делом вариант б)
-//
-//                                    }
+                                getOrder();
+                                while (count==2) {}        // официант занят делом вариант б)
                             } else { // если готов, возвращаем клиенту
-                                System.out.println(this.getName() + " - Ваш заказ готов");
-                                changeReady();// не забываем вернуть доп проверку назад
-                                readyM = true;
-                                synchronized(monitorM){
-                                    monitorM.notify(); // тут теперь уже будит официант клиента (маленькая месть)
-                                }
+                                putOrder();
                             }
                         }
                     }
@@ -108,9 +133,32 @@ public class Client {
     private class Cooker extends Thread{ // тут как у официанта, тока повар
         private boolean ready = false;
 
-        public void changeReady(){
+        private void changeReady(){
             this.ready = !this.ready;
         }
+
+        private void getOrder(){
+            changeReady();
+            System.out.println(this.getName()+ " - Приготовлю в лучших традициях ... хе-хе-хе\n20 минут спустя...");
+            orderReady = true; // отмечае что заказ готов
+        }
+
+        private void putOrder(){
+            if(waiter.getState()== Thread.State.WAITING){//вариант в)
+                System.out.println(this.getName()+ " - Waiter, забирай заказ!");
+                waiter.changeReady();
+                synchronized(monitorW){
+                    monitorW.notify(); // будим бедного официанта
+                }
+            } else { //когда официант занят, еду несёт повар, вариант б)
+                System.out.println(this.getName() + " - Ваш заказ готов");
+                Client.this.changeReady();
+                synchronized(monitorM){
+                    monitorM.notify();
+                }
+            }
+        }
+
         @Override
         public void run() {
             while(!isInterrupted()){
@@ -118,25 +166,14 @@ public class Client {
                     try{
                         monitorC.wait();// уснул
                         if(this.ready){ //проснулся и приял заказ
-                            changeReady();
-                            System.out.println(this.getName()+ " - Приготовлю в лучших традициях ... хе-хе-хе\n20 минут спустя...");
-//                            System.out.println(this.getName()+ " - Ваш заказ готов"); // вариант а)
-                            orderReady = true; // отмечае что заказ готов
-                            if(waiter.getState()== Thread.State.WAITING){
-                                System.out.println(this.getName()+ " - Waiter, забирай заказ!");
-                                waiter.changeReady();
-                                synchronized(monitorW){
-                                    monitorW.notify(); // будим бедного официанта
-                                }
-                            } else { //когда официант занят, еду несёт повар, вариант б)
-                                System.out.println(this.getName() + " - Ваш заказ готов");
-                                changeReady();
-                                readyM = true;
-                                synchronized(monitorM){
-                                    monitorM.notify();
-                                }
-                            }
+                            getOrder();
+                            if (count==3){ // вариант а)
+                                System.out.println(this.getName() + " - Кушать подано...");
+                                System.exit(0);
+                            } else {
+                                putOrder();
 
+                            }
                         }
                     }
                     catch(InterruptedException e){

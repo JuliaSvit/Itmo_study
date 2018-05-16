@@ -7,6 +7,7 @@ import static java.util.stream.Collectors.toList;
 
 public class WordCount {
     private static Map<String, Integer> result = new HashMap<>();
+    private final static Object monitor = new Object();
 
     public static void main(String[] args) throws IOException, InterruptedException {
         InputStream in = WordCount.class.getClassLoader().getResourceAsStream("wp.txt");
@@ -88,7 +89,7 @@ public class WordCount {
         }
 
         private static void joinToAll(Map<String,Integer> map){
-            synchronized (allWordCnt){
+            synchronized (monitor){
                 if(allWordCnt.size()==0){
                     allWordCnt.putAll(map);
                 } else {

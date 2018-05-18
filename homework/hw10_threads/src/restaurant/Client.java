@@ -19,7 +19,7 @@ public class Client {
 
     private static volatile int count = 0;
 
-    private boolean orderReady = false;
+    private boolean orderReady;
     private boolean ready = false;
 
     private Client.Waiter waiter;
@@ -51,8 +51,8 @@ public class Client {
                 this.waiter.changeReady(); //меняем доп проверку на готовность
                 synchronized(monitorW){
                     monitorW.notify();//вот тут будим
-                    break;
                 }
+                break;
             } else {
                 System.out.println(this.waiter.getName() + " - Пока что нет");
             }

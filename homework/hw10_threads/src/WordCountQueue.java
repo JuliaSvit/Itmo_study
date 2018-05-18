@@ -20,7 +20,6 @@ public class WordCountQueue {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         InputStream in = WordCountQueue.class.getClassLoader().getResourceAsStream("wp.txt");
-//        InputStream in = new BufferedInputStream(new FileInputStream(new File("src/wordcountqueue/text.txt")));
         BufferedReader rdr = new BufferedReader(new InputStreamReader(in));
 
         List<String> lines = rdr.lines().collect(toList());

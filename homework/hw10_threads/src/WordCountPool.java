@@ -1,8 +1,5 @@
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -24,7 +21,6 @@ public class WordCountPool {
     
     public static void main(String[] args) throws FileNotFoundException, InterruptedException, ExecutionException {
         InputStream in = WordCountPool.class.getClassLoader().getResourceAsStream("wp.txt");
-//        InputStream in = new BufferedInputStream(new FileInputStream(new File("src/wordcountpool/text.txt")));
 
         BufferedReader rdr = new BufferedReader(new InputStreamReader(in));
 

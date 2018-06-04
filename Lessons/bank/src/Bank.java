@@ -17,16 +17,33 @@ public class Bank {
 
     public static boolean transferMoney(Account src, Account dst, int amount){
 //        System.out.println(Thread.currentThread().getName());
-        synchronized (src) {
-            synchronized (dst) {
-                int srcAmount = src.getAmount();
-                int dstAmount = dst.getAmount();
-                if (srcAmount - amount >= 0) {
-                    src.setAmount(srcAmount - amount);
-                    dst.setAmount(dstAmount + amount);
-                    return true;
+        int srcId = src.getAmount();
+        int dstId = dst.getAmount();
+        if (srcId>dstId) {
+            synchronized (src) {
+                synchronized (dst) {
+                    int srcAmount = src.getAmount();
+                    int dstAmount = dst.getAmount();
+                    if (srcAmount - amount >= 0) {
+                        src.setAmount(srcAmount - amount);
+                        dst.setAmount(dstAmount + amount);
+                        return true;
+                    }
+                    return false;
                 }
-                return false;
+            }
+        } else {
+            synchronized (dst) {
+                synchronized (src) {
+                    int srcAmount = src.getAmount();
+                    int dstAmount = dst.getAmount();
+                    if (srcAmount - amount >= 0) {
+                        src.setAmount(srcAmount - amount);
+                        dst.setAmount(dstAmount + amount);
+                        return true;
+                    }
+                    return false;
+                }
             }
         }
     }

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane alignment="center" hgap="10" prefHeight="155.0" prefWidth="600.0" style="-fx-background-color: #454545;" stylesheets="/sample/sample.css" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="229.0" minHeight="124.0" prefHeight="146.0" />
+    </rowConstraints>
+    <children>
+        <Pane id="myPanel" focusTraversable="true" prefHeight="89.0" prefWidth="589.0" style="-fx-background-color: #454545;" GridPane.halignment="RIGHT">
+            <children>
+                <Group layoutX="45.0" layoutY="69.0" />
+                <Label fx:id="audioInfo" layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="501.0" text="Track" textAlignment="CENTER" textFill="WHITE" />
+                <ProgressBar fx:id="progress" layoutX="14.0" layoutY="37.0" opacity="0.5" prefHeight="18.0" prefWidth="559.0" progress="0.0">
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <effect>
+                        <Blend mode="DIFFERENCE" opacity="0.45" />
+                    </effect>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </ProgressBar>
+            <Group layoutX="246.0" layoutY="61.0">
+               <children>
+                      <Button fx:id="playAudio" mnemonicParsing="false" onAction="#playAudioAction">
+                          <graphic>
+                              <ImageView fx:id="playImg" fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" visible="true">
+                                  <image>
+                                      <Image url="/Play.png" />
+                                  </image>
+                                  <cursor>
+                                      <Cursor fx:constant="HAND" />
+                                  </cursor>
+                              </ImageView>
+                          </graphic>
+                          <cursor>
+                              <Cursor fx:constant="HAND" />
+                          </cursor>
+                      </Button>
+                      <Button fx:id="stopAudio" layoutX="82.0" layoutY="1.0" mnemonicParsing="false" onAction="#stopAudioAction">
+                          <graphic>
+                              <ImageView fx:id="stopImg" fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" visible="true">
+                                  <image>
+                                      <Image url="/Stop.png" />
+                                  </image>
+                                  <cursor>
+                                      <Cursor fx:constant="HAND" />
+                                  </cursor>
+                              </ImageView>
+                          </graphic>
+                      </Button>
+                      <Button fx:id="nextAudio" layoutX="164.0" mnemonicParsing="false" onAction="#nextAudioAction">
+                          <graphic>
+                              <ImageView fx:id="nextImg" fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" visible="true">
+                                  <image>
+                                      <Image url="/Next.png" />
+                                  </image>
+                                  <cursor>
+                                      <Cursor fx:constant="HAND" />
+                                  </cursor>
+                              </ImageView>
+                          </graphic>
+                      </Button>
+               </children>
+            </Group>
+                <Button fx:id="mute" layoutX="14.0" layoutY="62.0" mnemonicParsing="false" onAction="#muteButton">
+                    <graphic>
+                        <ImageView fx:id="muteImg" fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" visible="true">
+                            <image>
+                                <Image url="/Mute_1.png" />
+                            </image>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            <Button fx:id="buttonOpenFile" layoutX="13.0" layoutY="107.0" mnemonicParsing="false" onAction="#hndlOpenFiles" text="Open file" />
+            <Button layoutX="105.0" layoutY="107.0" mnemonicParsing="false" onAction="#hndlOpenDir" text="Open dir" />
+            <CheckBox fx:id="plCheckBox" layoutX="500.0" layoutY="72.0" mnemonicParsing="false" onAction="#playListWin" text="Play List" textFill="#ffd86d" />
+            <Label fx:id="timeLabel" layoutX="524.0" layoutY="14.0" prefHeight="17.0" prefWidth="48.0" text="00:00" textFill="WHITE" />
+            <Slider fx:id="volumeSlider" layoutX="69.0" layoutY="73.0" prefHeight="14.0" prefWidth="151.0" />
+            </children>
+        </Pane>
+    </children>
+</GridPane>

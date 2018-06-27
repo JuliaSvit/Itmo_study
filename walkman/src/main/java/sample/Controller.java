@@ -3,17 +3,15 @@ package sample;
 import javafx.beans.InvalidationListener;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -22,7 +20,6 @@ import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.*;
 
 public class Controller{
@@ -179,7 +176,7 @@ public class Controller{
     private void playListWin(){
         if(plCheckBox.isSelected()) {
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("playList.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../resources/playList.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
                 stage = new Stage();
                 stage.initModality(Modality.APPLICATION_MODAL);
@@ -207,5 +204,15 @@ public class Controller{
             muteImg.setImage(imageMute1);
             mediaView.getMediaPlayer().setVolume(valume);
         }
+    }
+
+    public void googleConnect(MouseEvent mouseEvent) {
+        new Thread(){
+            @Override
+            public void run() {
+                Connection.getConnect();
+            }
+        };
+
     }
 }

@@ -32,7 +32,7 @@ public class Main extends Application {
         params = getParameters().getRaw();
         final File dir = getFile("C:\\Users\\Public\\Music\\Sample Music");
         players = createMediaPlayers(dir);
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/sample.fxml"));
         primaryStage.setTitle("Angel");
         primaryStage.getIcons().add(new Image("/Angle.png"));
         primaryStage.setScene(new Scene(root, 600, 200));

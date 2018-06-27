@@ -206,13 +206,9 @@ public class Controller{
         }
     }
 
-    public void googleConnect(MouseEvent mouseEvent) {
-        new Thread(){
-            @Override
-            public void run() {
-                Connection.getConnect();
-            }
-        };
-
+    public void googleConnect(ActionEvent actionEvent) {
+        System.out.println("hi");
+        Connection.getConnect();
     }
+
 }

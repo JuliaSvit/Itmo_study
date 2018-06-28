@@ -4,6 +4,7 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -31,16 +33,17 @@ public class Controller{
     @FXML private CheckBox plCheckBox = new CheckBox();
     @FXML private Label timeLabel = new Label();
     @FXML private Slider volumeSlider = new Slider();
+    @FXML private GridPane wmPanel = new GridPane();
 
     private MediaView mediaView;
     private List<MediaPlayer> players = Main.getPlayers();
     private ChangeListener<Duration> progressChangeListener;
 
     //Изображения кнопак (можно перенести в enum)
-    private Image imagePlay = new Image("/Play.png");
-    private Image imagePause = new Image("/Pause.png");
-    private Image imageMute1 = new Image("/Mute_1.png");
-    private Image imageMute2 = new Image("/Mute_2.png");
+    private Image imagePlay = new Image("/img/Play.png");
+    private Image imagePause = new Image("/img/Pause.png");
+    private Image imageMute1 = new Image("/img/Mute_1.png");
+    private Image imageMute2 = new Image("/img/Mute_2.png");
 
     private boolean startTrigger = true;
 
@@ -106,6 +109,7 @@ public class Controller{
         mediaView.setMediaPlayer(nextPlayer);
         curPlayer.currentTimeProperty().removeListener(progressChangeListener);
         curPlayer.stop();
+        nextPlayer.setVolume(valume);
         nextPlayer.play();
         playImg.setImage(imagePause);
     }
@@ -113,12 +117,13 @@ public class Controller{
     //Событие нажатие на кнопку stop
     @FXML
     public void stopAudioAction(ActionEvent actionEvent) {
+        mediaView.getMediaPlayer().stop();
     }
 
     // Событие нажатие на кнопку open file
     // открыть файл и добавить его в список
     @FXML
-    private void hndlOpenFiles(ActionEvent event) {
+    private void openFiles(ActionEvent event) {
         FileChooser file = new FileChooser();
         file.getExtensionFilters().add(new FileChooser.ExtensionFilter("mp3", "*.mp3"));
         File selectedFile = file.showOpenDialog(Main.getPrimary());
@@ -133,7 +138,7 @@ public class Controller{
     // Событие нажатие на кнопку open dir
     //открыть каталог и добавить в список все его содержимое
     @FXML
-    private void hndlOpenDir(ActionEvent event) {
+    private void openDir(ActionEvent event) {
         DirectoryChooser dir = new DirectoryChooser();
         File selectedDir = dir.showDialog(Main.getPrimary());
         if(selectedDir != null){
@@ -171,25 +176,27 @@ public class Controller{
     }
 
     //окно с плейлистом
-    private  Stage stage;
+    private  Stage stagePL;
     @FXML
     private void playListWin(){
         if(plCheckBox.isSelected()) {
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../resources/playList.fxml"));
-                Parent root1 = (Parent) fxmlLoader.load();
-                stage = new Stage();
-                stage.initModality(Modality.APPLICATION_MODAL);
-//                stage.initStyle(StageStyle.UNDECORATED); //убирает рамки окна
-                stage.initModality(Modality.WINDOW_MODAL);
-                stage.setTitle("Play List");
-                stage.setScene(new Scene(root1));
-                stage.show();
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/win/playList.fxml"));
+                Parent root = (Parent) fxmlLoader.load();
+                stagePL = new Stage();
+                stagePL.initModality(Modality.APPLICATION_MODAL);
+                stagePL.initStyle(StageStyle.UNDECORATED); //убирает рамки окна
+                stagePL.initModality(Modality.WINDOW_MODAL);
+                stagePL.setTitle("Play List");
+                stagePL.setScene(new Scene(root));
+                stagePL.setX(995.0);
+                stagePL.setY(200.0);
+                stagePL.show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
-            stage.close();
+            stagePL.close();
         }
     }
 
@@ -206,9 +213,16 @@ public class Controller{
         }
     }
 
-    public void googleConnect(ActionEvent actionEvent) {
-        System.out.println("hi");
-        Connection.getConnect();
+    public void googleConnect(ActionEvent actionEvent) throws InterruptedException {
+        Connection connection = new Connection();
+        Thread thread = new Thread(){
+            @Override
+            public void run() {
+                connection.getConnect();
+            }
+        };
+        thread.start();
+        thread.join();
     }
 
 }

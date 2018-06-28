@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -8,6 +9,8 @@ import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
@@ -32,12 +35,18 @@ public class Main extends Application {
         params = getParameters().getRaw();
         final File dir = getFile("C:\\Users\\Public\\Music\\Sample Music");
         players = createMediaPlayers(dir);
-        Parent root = FXMLLoader.load(getClass().getResource("/sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/win/sample.fxml"));
         primaryStage.setTitle("Angel");
-        primaryStage.getIcons().add(new Image("/Angle.png"));
+        primaryStage.getIcons().add(new Image("/img/Angle.png"));
         primaryStage.setScene(new Scene(root, 600, 200));
         primaryStage.setMinHeight(200);
         primaryStage.setMinWidth(600);
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                System.exit(0);
+            }
+        });
         primaryStage.show();
     }
 

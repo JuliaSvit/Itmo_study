@@ -46,7 +46,7 @@ public class Connection {
     private static Credential authorize() throws Exception {
         // load client secrets
         GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY,
-                new InputStreamReader(Connection.class.getResourceAsStream("/client_secrets.json")));
+                new InputStreamReader(Connection.class.getResourceAsStream("/settings/client_secrets.json")));
         if (clientSecrets.getDetails().getClientId().startsWith("Enter")
                 || clientSecrets.getDetails().getClientSecret().startsWith("Enter ")) {
             System.out.println(
@@ -63,7 +63,7 @@ public class Connection {
         return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
     }
 
-    public static void getConnect() {
+    public void getConnect() {
         try {
             httpTransport = GoogleNetHttpTransport.newTrustedTransport();
             dataStoreFactory = new FileDataStoreFactory(DATA_STORE_DIR);
